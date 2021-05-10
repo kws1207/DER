@@ -23,7 +23,7 @@ def update_args(args, key, value):
 
 if __name__ == '__main__':
     cf = configparser.ConfigParser()
-    cf.read("./conf/default_setting.conf")
+    cf.read("/content/DER/conf/default_setting.conf")
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--root_path', type=str, default=cf.get("path", "root_path"), required=False, help='root_path')
@@ -54,7 +54,7 @@ if __name__ == '__main__':
     args.logger = logging.getLogger()
     
 
-    result_file = './results/DER_result_' + args.mode + args.input_data_type.split('/')[-1]
+    result_file = '/content/DER/results/DER_result_' + args.mode + args.input_data_type.split('/')[-1]
     f = open(result_file, 'wb')
     f.write((str(args.mode) + ' parameters:').encode())
     f.write(str(args).encode())
@@ -71,12 +71,3 @@ if __name__ == '__main__':
         f.write(str(r).encode())
         f.write('\n'.encode())
     f.close()
-
-
-    
-
-
-
-
-
-
