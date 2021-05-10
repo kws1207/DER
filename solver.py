@@ -6,8 +6,18 @@ import numpy as np
 import pandas as pd
 import os
 import itertools
-from compiler.ast import flatten
+#from compiler.ast import flatten
 
+
+import collections
+def flatten(x):
+    result = []
+    for el in x:
+        if isinstance(x, collections.Iterable) and not isinstance(el, str):
+            result.extend(flatten(el))
+        else:
+            result.append(el)
+    return result
 class Solver:
     def __init__(self, args, id):
         self.args = args
@@ -30,7 +40,7 @@ class Solver:
 
         self.model = DER(self.model_args)
         self.model.build_loss()
-        print self.model_args
+        print(self.model_args)
         # Get loss, evaluation, operation, rating and attention prediction.
         self.loss = self.model.get_loss()
         self.evaluation_mse_sum = self.model.get_mse_sum()

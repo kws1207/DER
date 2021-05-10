@@ -1,5 +1,5 @@
 import argparse
-import ConfigParser
+from six.moves import configparser
 import logging.config
 from solver import *
 from argparse import Namespace
@@ -22,7 +22,7 @@ def update_args(args, key, value):
     return args_out
 
 if __name__ == '__main__':
-    cf = ConfigParser.ConfigParser()
+    cf = configparser.ConfigParser()
     cf.read("./conf/default_setting.conf")
     parser = argparse.ArgumentParser()
 
@@ -50,25 +50,26 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     logging.config.fileConfig(os.path.join(args.root_path, args.log_conf_path))
+    print(os.path.join(args.root_path, args.log_conf_path))
     args.logger = logging.getLogger()
     
 
     result_file = './results/DER_result_' + args.mode + args.input_data_type.split('/')[-1]
     f = open(result_file, 'wb')
-    f.writelines(args.mode + ' parameters:')
-    f.writelines(str(args))
-    f.writelines('\n')
-    f.writelines(args.mode + ' result:')
-    f.writelines('\n')
+    f.write((str(args.mode) + ' parameters:').encode())
+    f.write(str(args).encode())
+    f.write('\n'.encode())
+    f.write((str(args.mode) + ' result:').encode())
+    f.write('\n'.encode())
         
 
-    with tf.variable_scope(args.mode):
+    with tf.compat.v1.variable_scope(args.mode):
         args.namespace = args.mode
         s = Solver(args, 0)
         exp = ExcuteExperiments(s)
         r = exp.excute()
-        f.writelines(str(r))
-        f.writelines('\n')
+        f.write(str(r).encode())
+        f.write('\n'.encode())
     f.close()
 
 
