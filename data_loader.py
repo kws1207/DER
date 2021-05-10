@@ -10,7 +10,7 @@ class DataLoader():
 
     def __init__(self, args):
         np.random.seed(0)
-        print 'init'
+        print('init')
         self.logger = args.logger
         self.train_file_path = os.path.join(args.root_path, args.input_data_type, 'train_ided_whole_data')
         self.test_file_path = os.path.join(args.root_path, args.input_data_type, 'test_ided_whole_data')
@@ -231,7 +231,7 @@ class DataLoader():
                 self.test_records_num += 1
             else:
                 self.train_validation_records_num += 1
-        print mode +' number:' + str(eval('self.' + mode + '_records_num'))
+        print(mode +' number:' + str(eval('self.' + mode + '_records_num')))
         if mode == 'train':
             self.global_rating /= self.train_records_num
 

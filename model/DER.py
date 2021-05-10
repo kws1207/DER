@@ -28,7 +28,7 @@ class DER():
         self.namespace = args.namespace
         self.emb = pickle.load(open(self.word_embedding_path, "rb"))
         self.word_vocab_size = len(self.emb)
-        print self.word_vocab_size
+        print(self.word_vocab_size)
 
 
         self.weight_initializer = tf.random_uniform_initializer(minval=-0.1, maxval=0.1)
@@ -57,8 +57,8 @@ class DER():
 
         self.user_bias_vector = tf.get_variable('user_bias_vector', shape=[self.parameters.user_number])
         self.item_bias_vector = tf.get_variable('item_bias_vector', shape=[self.parameters.item_number])
-        print 'global rating'
-        print self.parameters.global_rating
+        print('global rating')
+        print(self.parameters.global_rating)
         self.global_b = tf.get_variable('global_b', initializer=tf.constant(self.parameters.global_rating, shape=[1], dtype=tf.float32))
 
     def model_init(self, sess):
@@ -100,8 +100,8 @@ class DER():
         return h_pool_flat_i
 
     def attentioned_item_review_representation(self, user, item_reviews, item_reviews_length):
-        print user
-        print item_reviews
+        print(user)
+        print(item_reviews)
 
         with tf.variable_scope('attention'):
             att = 32
@@ -285,7 +285,7 @@ class DER():
         all_vars = tf.trainable_variables()
         vars = [var for var in all_vars if var.name.split('/')[0] == self.namespace]
         gvs = self.total_optimizer.compute_gradients(self.total_loss, vars)
-        print gvs
+        print(gvs)
         capped_gvs = [(tf.clip_by_value(grad, -1., 1.), var) for grad, var in gvs]
         self.train_op = self.total_optimizer.apply_gradients(capped_gvs)
         return self.train_op
