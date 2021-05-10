@@ -3,3 +3,5 @@
 *.pyc
 .python-version
 .vscode/
+.conf/default_setting.conf
+.conf/default_setting_good.conf
