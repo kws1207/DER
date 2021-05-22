@@ -12,10 +12,11 @@ class DataLoader():
         np.random.seed(0)
         print('init')
         self.logger = args.logger
-        self.train_file_path = os.path.join(args.root_path, args.input_data_type, 'train_ided_whole_data')
-        self.test_file_path = os.path.join(args.root_path, args.input_data_type, 'test_ided_whole_data')
-        self.validation_file_path = os.path.join(args.root_path, args.input_data_type, 'validation_ided_whole_data')
-        self.train_validation_file_path = os.path.join(args.root_path, args.input_data_type, 'train_validation_ided_whole_data')
+        self.file_name = '/data_example.json'
+        self.train_file_path = os.path.join(args.root_path, args.input_data_type, 'train_ided_whole_data'+self.file_name)
+        self.test_file_path = os.path.join(args.root_path, args.input_data_type, 'test_ided_whole_data'+self.file_name)
+        self.validation_file_path = os.path.join(args.root_path, args.input_data_type, 'validation_ided_whole_data'+self.file_name)
+        self.train_validation_file_path = os.path.join(args.root_path, args.input_data_type, 'train_validation_ided_whole_data'+self.file_name)
 
         self.id_user_dict_path = os.path.join(args.root_path, args.input_data_type, 'id_user_dict')
         self.id_item_dict_path = os.path.join(args.root_path, args.input_data_type, 'id_item_dict')
