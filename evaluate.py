@@ -5,25 +5,25 @@ import numpy as np
 
 
 experiment_id = 0
-attention_path = os.path.join('./results', str(experiment_id), 'attention_results')
+attention_path = os.path.join('/content/DER/results', str(experiment_id), 'attention_results')
 attention = pd.read_csv(attention_path, header=None, dtype='str')
 
-path = './data/der_data/auto/'
+path = '/content/DER/data/der_data/auto/'
 id_user_dict = {v:k for k,v in list(pickle.load(open(path+'user_id_dict', 'rb')).items())}
 
 
 id_item_dict = {v:k for k,v in list(pickle.load(open(path+'item_id_dict', 'rb')).items())}
 id_word_dict = pickle.load(open(path+'id_word_dict', 'rb'))
-user_reviews_dict = pickle.load(open(path+'user_reviews', 'rb'))
+user_reviews_dict = pickle.load(open(path+'user_review', 'rb'))
 item_reviews_dict = pickle.load(open(path+'item_real_reviews', 'rb'))
 
 
 
-train_rmse_path = os.path.join('./results', str(experiment_id), 'train_rmse_vs_epoch')
+train_rmse_path = os.path.join('/content/DER/results', str(experiment_id), 'train_rmse_vs_epoch')
 train_rmse = pd.read_csv(train_rmse_path, header=None, dtype='str')
-validation_rmse_path = os.path.join('./results', str(experiment_id), 'validation_rmse_vs_epoch')
+validation_rmse_path = os.path.join('/content/DER/results', str(experiment_id), 'validation_rmse_vs_epoch')
 validation_rmse = pd.read_csv(validation_rmse_path, header=None, dtype='str')
-parameters = pickle.load(open(os.path.join('./results', str(experiment_id), 'model_args'), 'rb'))
+parameters = pickle.load(open(os.path.join('/content/DER/results', str(experiment_id), 'model_args'), 'rb'))
 
 num = 0
 
