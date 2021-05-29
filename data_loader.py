@@ -41,26 +41,26 @@ class DataLoader():
         self.id_word_dict = pickle.load(open(self.id_word_dict_path, 'rb'))
         self.item_reviews_dict = pickle.load(open(self.item_reviews_path, 'rb'))
         self.item_real_reviews_dict = pickle.load(open(self.item_real_reviews_path, 'rb'))
-        self.user_item_review_dict = pickle.load(open(self.user_item_review_path, 'rb'))
+        self.user_item_review_dict = pickle.load(open(self.user_item_review_path, 'rb'),encoding='latin1')
 
         self.train_user_purchsed_items_dict = pickle.load(open(self.train_user_purchsed_items_dict_path, 'rb'))
         self.validation_user_purchsed_items_dict = pickle.load(open(self.validation_user_purchsed_items_dict_path, 'rb'))
         self.test_user_purchsed_items_dict = pickle.load(open(self.test_user_purchsed_items_dict_path, 'rb'))
-        self.data_statistics = pickle.load(open(self.data_statistics_path, 'rb'))
+        #self.data_statistics = pickle.load(open(self.data_statistics_path, 'rb'))
         time_consuming = str(time.time() - s)
         self.logger.info('loading dicts end ... time consuming: ' + time_consuming)
 
-        self.max_interaction_length = self.data_statistics['max_interaction_length']
-        self.interaction_num = self.data_statistics['interaction_num']
+        self.max_interaction_length = 10245#self.data_statistics['max_interaction_length']
+        self.interaction_num = 10245#self.data_statistics['interaction_num']
 
-        self.max_sentence_length = self.data_statistics['max_sentence_length']
+        #self.max_sentence_length = self.data_statistics['max_sentence_length']
         self.max_sentence_length = 30
-        self.max_sentence_word_length = self.data_statistics['max_sentence_word_length']
+        #self.max_sentence_word_length = self.data_statistics['max_sentence_word_length']
         self.max_sentence_word_length = 10
-        self.time_bin_number = self.data_statistics['time_bin_number']
-        self.user_num = self.data_statistics['user_num']
-        self.item_num = self.data_statistics['item_num']
-        self.word_num = self.data_statistics['word_num']
+        self.time_bin_number = 10#self.data_statistics['time_bin_number']
+        self.user_num = 1429#self.data_statistics['user_num']
+        self.item_num = 900#self.data_statistics['item_num']
+        self.word_num = 1000#self.data_statistics['word_num']
         self.global_rating = 0.0
 
         # all data statistics

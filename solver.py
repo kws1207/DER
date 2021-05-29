@@ -1,5 +1,5 @@
 from data_loader import DataLoader
-from model.DER import *
+from model.DER_upgraded import *
 import tensorflow as tf
 import time
 import numpy as np
