@@ -26,7 +26,7 @@ class DER():
         self.word_embedding_path = os.path.join(args.root_path, args.input_data_type, 'word_emb.pkl')
         self.logger = args.logger
         self.namespace = args.namespace
-        self.emb = pickle.load(open(self.word_embedding_path, "rb"))
+        self.emb = pickle.load(open(self.word_embedding_path, "rb"), encoding='latin1')
         self.word_vocab_size = len(self.emb)
         print(self.word_vocab_size)
 
