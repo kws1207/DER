@@ -9,10 +9,10 @@ attention_path = os.path.join('./results', str(experiment_id), 'attention_result
 attention = pd.read_csv(attention_path, header=None, dtype='str')
 
 path = './data/der_data/auto/'
-id_user_dict = {v:k for k,v in pickle.load(open(path+'user_id_dict', 'rb')).items()}
+id_user_dict = {v:k for k,v in list(pickle.load(open(path+'user_id_dict', 'rb')).items())}
 
 
-id_item_dict = {v:k for k,v in pickle.load(open(path+'item_id_dict', 'rb')).items()}
+id_item_dict = {v:k for k,v in list(pickle.load(open(path+'item_id_dict', 'rb')).items())}
 id_word_dict = pickle.load(open(path+'id_word_dict', 'rb'))
 user_reviews_dict = pickle.load(open(path+'user_reviews', 'rb'))
 item_reviews_dict = pickle.load(open(path+'item_real_reviews', 'rb'))
@@ -56,44 +56,44 @@ for line in attention.values:
     record = str(user) + '||' + '@@@'.join(previous_time) + '||' + '@@@'.join(previous_reviews) \
              + '||' + '@@@'.join([str(i) for i in attention[max_index]]) + '||' + '@@@'.join(sentences[max_index])
 
-    if item not in final_result.keys():
+    if item not in list(final_result.keys()):
         final_result[item] = [record]
     else:
         final_result[item].append(record)
 
 
-for k,v in final_result.items():
-    print 'item reviews:'
-    print str(k)
-    print item_reviews_dict[k]
-    print 'user attention for this item:'
+for k,v in list(final_result.items()):
+    print('item reviews:')
+    print(str(k))
+    print(item_reviews_dict[k])
+    print('user attention for this item:')
     for line in v:
         line_list = line.split('||')
-        print 'user:'
-        print line_list[0]
+        print('user:')
+        print(line_list[0])
 
-        print 'previous review'
+        print('previous review')
         for p in range(len(line_list[1].split('@@@')[:-1])):
-            print 'time:'
-            print line_list[1].split('@@@')[:-1][p]
-            print 'content:'
-            print line_list[2].split('@@@')[:-1][p]
-        print '----------------------------'
-        print 'current time:'
-        print line_list[1].split('@@@')[-1]
-        print 'current review:'
-        print line_list[2].split('@@@')[-1]
-        print '----------------------------'
+            print('time:')
+            print(line_list[1].split('@@@')[:-1][p])
+            print('content:')
+            print(line_list[2].split('@@@')[:-1][p])
+        print('----------------------------')
+        print('current time:')
+        print(line_list[1].split('@@@')[-1])
+        print('current review:')
+        print(line_list[2].split('@@@')[-1])
+        print('----------------------------')
 
-        print 'attention:'
-        print line_list[3].split('@@@')
-        print 'sentences:'
-        print line_list[4].split('@@@')
-        print '&&&&&&&&&&&&&&&&&&&&&&&&&&&&'
+        print('attention:')
+        print(line_list[3].split('@@@'))
+        print('sentences:')
+        print(line_list[4].split('@@@'))
+        print('&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
     if int(k) == 669:
-        raw_input()
+        input()
 
-    print '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'
+    print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
 
 
 
@@ -110,5 +110,5 @@ for line in train_rmse.values:
 for line in validation_rmse.values:
     validation.append(float(line[0]))
 
-print train
-print validation
+print(train)
+print(validation)
