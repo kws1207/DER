@@ -1,0 +1,5 @@
+K=5
+alpha=11.0
+beta=0.01
+iter_times=500
+top_words_num=20
